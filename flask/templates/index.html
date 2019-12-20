@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lista de Tareas</title>
+    {%block head%} {%endblock%}
+    <style>
+        body{
+            margin: 0;
+            background-color:rgb(229, 235, 233);
+            font-family: sans-serif ;
+            font-size: 1.2rem;
+            
+        }
+        .contenedor{
+            width: 40%;
+            margin: 0 auto;
+            border: 1px solid black;
+            padding: 10px;
+            margin-top: 100px;
+        }
+        input[type=text]{
+            width: 300px;
+            height: 40px;
+            margin-top: 20px;
+            font-size: 20px;
+
+        }
+        input[type=submit]{
+            background-color: purple;
+            color:white;
+            padding: 5px;
+            font-size: 1.2rem;
+            width: 180px;
+            height: 50px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 0 auto;
+
+          }
+          
+          table, th, td {
+            border: 1px solid black;
+            width:100%;
+          }
+          
+          th {
+            height: 50px;
+            border: 1px solid black;
+          }
+        
+    </style>
+</head>
+<body>
+    
+    {%block body%} 
+        <div class="contenedor">
+                <h1>Tareas</h1>
+                <table>
+                    <tr >
+                        <th>Tarea</th>
+                        <th>Agregada</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {%for item in tareas%}
+                        <tr>
+                            <td>{{item.tarea}}</td>
+                            <td>{{item.fecha.date()}}</td>
+                             
+                            </td>
+                        </tr>
+                        <td>
+                            
+                            <a href="/borrar/{{item.id}}">Eliminar</a>
+                            
+                            <a href="/actualizar/{{item.id}}">Actualizar</a>
+                        </td>
+                        {%endfor%}
+                </table>
+                <form action="/" method="POST">
+                    <input type='text' name='tarea' id='tarea' class='tarea'> 
+                    <input type='submit' value='Agregar Tarea' class='boton'> 
+            </form>
+        </div>
+    {%endblock%}
+      
+</body>
+</html>
